@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Main.tres" type="Shader" id=1]
+
+[sub_resource type="PhysicsMaterial" id=1]
+
+[sub_resource type="SphereMesh" id=2]
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 1 )
+
+[sub_resource type="SphereShape" id=4]
+
+[sub_resource type="PlaneMesh" id=5]
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.439216, 0.494118, 0.760784, 1 )
+metallic = 0.45
+metallic_specular = 0.47
+roughness = 0.52
+
+[sub_resource type="BoxShape" id=7]
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 1 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="RigidBody" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0728903, 4, 1.3821 )
+physics_material_override = SubResource( 1 )
+
+[node name="CSGMesh" type="CSGMesh" parent="RigidBody"]
+mesh = SubResource( 2 )
+material = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+shape = SubResource( 4 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.861266, 0.252201, -0.441153, 0, 0.868147, 0.496307, 0.508155, -0.427453, 0.747705, -7.69061, 3.31528, 7.20487 )
+
+[node name="CSGMesh2" type="CSGMesh" parent="."]
+transform = Transform( 6.6684, -0.55, 2.40413e-08, 0, -3.36578e-07, -7.7, 3.85, 0.952628, -4.16407e-08, 1, 0, -3 )
+mesh = SubResource( 5 )
+material = SubResource( 6 )
+
+[node name="CSGMesh4" type="CSGMesh" parent="."]
+transform = Transform( 7.69541, -0.0379673, 1.6596e-09, 0.265738, 1.09921, 0.121351, -0.0041885, -0.0173251, 7.69904, -1.41009, -2.86228, 1.06856 )
+mesh = SubResource( 5 )
+material = SubResource( 6 )
+
+[node name="StaticBody" type="StaticBody" parent="CSGMesh4"]
+
+[node name="CollisionShape" type="CollisionShape" parent="CSGMesh4/StaticBody"]
+transform = Transform( 1, -7.66249e-10, 1.16415e-10, -3.83079e-09, 1, 0, -1.16415e-10, -4.65661e-10, 1, -0.00448199, -0.908437, -0.00204669 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="CSGMesh4/StaticBody"]
+transform = Transform( 0.71098, 0.0520289, -0.601549, -3.08529, 0.897346, 0.156487, 0.547942, 0.0356061, 0.798521, -0.904362, 1.56522, -0.165242 )
+shape = SubResource( 7 )
+
+[node name="CSGMesh3" type="CSGMesh" parent="."]
+transform = Transform( 3.5017, -0.225814, 1.64742, -0.0529217, -0.426558, -2.21766, 2.42152, 0.315294, -2.44079, 1.05897, 0, -1.69423 )
+mesh = SubResource( 5 )
+material = SubResource( 8 )
+
+[node name="ARVROrigin" type="ARVROrigin" parent="."]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -8, 0, 9 )
+
+[node name="ARVRCamera" type="ARVRCamera" parent="ARVROrigin"]
+current = true

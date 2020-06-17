@@ -1,0 +1,168 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://Main.tres" type="Shader" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32.551, 31.9382 )
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Light2D
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	
+	texture_scale = get_viewport_rect().size[0]/64*3
+	pass
+
+"
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.29249, 0.388636 ), 0.0, 0.0, 0, 0, Vector2( 0.509881, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.758893, 0.506818 ), 0.0, 0.0, 0, 0, Vector2( 0.992095, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 2 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 155.125, 126.909 )
+
+[sub_resource type="OccluderPolygon2D" id=5]
+polygon = PoolVector2Array( 2.70642, -2.11368, 3.87277, 257.983, 316.455, 257.983, 314.122, -3.28003 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "Новая анимация"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect4:rect_position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 462, 277 ), Vector2( 110.617, 286.761 ), Vector2( 276.141, 41.2195 ), Vector2( 646.051, 59.9952 ), Vector2( 218.441, 312.217 ) ]
+}
+
+[node name="Node2D" type="CanvasLayer"]
+layer = 0
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="ColorRect2"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -14.1013
+margin_top = -12.9544
+margin_right = 12.8987
+margin_bottom = 13.0456
+color = Color( 0.498039, 0.243137, 0.243137, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" type="Sprite" parent="."]
+position = Vector2( 510.202, 143.396 )
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+velocity = 2.0
+colorOn = Color( 0.792157, 0.792157, 0.572549, 1 )
+colorOff = Color( 0.0470588, 0.0431373, 0.0431373, 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Player"]
+position = Vector2( -0.773782, -0.386875 )
+scale = Vector2( 3.01183, 3.05052 )
+
+[node name="Area2D" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+shape = SubResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="Player"]
+position = Vector2( -1.85651, 3.67154 )
+texture = ExtResource( 3 )
+color = Color( 1, 1, 1, 0 )
+mode = 2
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 0.560784 )
+shadow_buffer_size = 4096
+script = SubResource( 2 )
+
+[node name="Particles2D" type="CPUParticles2D" parent="Player"]
+amount = 1024
+lifetime = 3.0
+local_coords = false
+emission_shape = 1
+emission_sphere_radius = 128.0
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 32.25
+initial_velocity_random = 1.0
+angular_velocity = 557.64
+angular_velocity_random = 1.0
+orbit_velocity = 0.05
+linear_accel = 100.0
+linear_accel_random = 1.0
+scale_amount = 5.0
+scale_amount_random = 1.0
+scale_amount_curve = SubResource( 7 )
+hue_variation = 1.0
+hue_variation_random = 1.0
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+material = SubResource( 3 )
+margin_left = 218.441
+margin_top = 312.217
+margin_right = 530.441
+margin_bottom = 567.217
+color = Color( 0.207843, 0.560784, 0.396078, 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Area2D" type="Area2D" parent="ColorRect4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect4/Area2D"]
+position = Vector2( 156.275, 128.606 )
+shape = SubResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="ColorRect4"]
+position = Vector2( -3.70117, 0 )
+occluder = SubResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Новая анимация"
+method_call_mode = 1
+"anims/Новая анимация" = SubResource( 6 )
+[connection signal="screen_entered" from="Player/VisibilityNotifier2D" to="Player" method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="screen_exited" from="Player/VisibilityNotifier2D" to="Player" method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="area_entered" from="ColorRect4/Area2D" to="Player" method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="ColorRect4/Area2D" to="Player" method="_on_Area2D_area_exited"]
