@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Node2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -98,8 +98,26 @@ animations = [ {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
 "loop": true,
 "name": "default",
-"speed": 5.0
+"speed": 4.0
 } ]
+
+[sub_resource type="Animation" id=19]
+resource_name = "Новая анимация"
+length = 4.0
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15 ]
+}
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )
@@ -110,14 +128,26 @@ layer = -1
 [node name="HID" parent="." instance=ExtResource( 5 )]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 1024.36, 160.901 )
+position = Vector2( 880.66, 36.0528 )
+scale = Vector2( 0.710841, 0.768673 )
 frames = SubResource( 1 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
-position = Vector2( 1102.13, 160.294 )
-scale = Vector2( 5.10491, 4.85613 )
+position = Vector2( 942.051, 34.452 )
+scale = Vector2( 3.13864, 2.54286 )
 frames = SubResource( 18 )
-frame = 13
+frame = 4
 playing = true
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 994.344, 31.105 )
+scale = Vector2( 3.15421, 3.21918 )
+texture = ExtResource( 2 )
+vframes = 4
+hframes = 4
+frame = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+"anims/Новая анимация" = SubResource( 19 )
