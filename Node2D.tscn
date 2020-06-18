@@ -29,20 +29,19 @@ func _process(delta):
 
 "
 
-[sub_resource type="Curve" id=7]
+[sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.29249, 0.388636 ), 0.0, 0.0, 0, 0, Vector2( 0.509881, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.758893, 0.506818 ), 0.0, 0.0, 0, 0, Vector2( 0.992095, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 2 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 155.125, 126.909 )
 
-[sub_resource type="OccluderPolygon2D" id=5]
+[sub_resource type="OccluderPolygon2D" id=6]
 polygon = PoolVector2Array( 2.70642, -2.11368, 3.87277, 257.983, 316.455, 257.983, 314.122, -3.28003 )
 
-[sub_resource type="Animation" id=6]
-resource_name = "Новая анимация"
+[sub_resource type="Animation" id=7]
 length = 5.0
 loop = true
 tracks/0/type = "value"
@@ -129,12 +128,12 @@ linear_accel = 100.0
 linear_accel_random = 1.0
 scale_amount = 5.0
 scale_amount_random = 1.0
-scale_amount_curve = SubResource( 7 )
+scale_amount_curve = SubResource( 3 )
 hue_variation = 1.0
 hue_variation_random = 1.0
 
 [node name="ColorRect4" type="ColorRect" parent="."]
-material = SubResource( 3 )
+material = SubResource( 4 )
 margin_left = 218.441
 margin_top = 312.217
 margin_right = 530.441
@@ -149,19 +148,19 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect4/Area2D"]
 position = Vector2( 156.275, 128.606 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="ColorRect4"]
 position = Vector2( -3.70117, 0 )
-occluder = SubResource( 5 )
+occluder = SubResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Новая анимация"
 method_call_mode = 1
-"anims/Новая анимация" = SubResource( 6 )
+"anims/Новая анимация" = SubResource( 7 )
 [connection signal="screen_entered" from="Player/VisibilityNotifier2D" to="Player" method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_exited" from="Player/VisibilityNotifier2D" to="Player" method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="area_entered" from="ColorRect4/Area2D" to="Player" method="_on_Area2D_area_entered"]
